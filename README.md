@@ -2,10 +2,7 @@
 
 A digital archive documenting pastoral nomadic life, traditional herding practices, and indigenous knowledge systems across mountain and grassland regions.
 
-<<<<<<
-=======
-**Live Website:** [https://pastoral-archive.pages.dev/]
->>>>>>> e63b23a (Update README with project details)
+**Live Website:** [pastoral-archive.pages.dev](https://pastoral-archive.pages.dev/)
 
 ---
 
@@ -50,7 +47,3 @@ To create an accessible, researcher-friendly archive that:
 | **Hosting** | [Cloudflare Pages](https://pages.cloudflare.com/) |
 | **Contact Form** | [Formspree](https://formspree.io/) |
 | **Version Control** | Git + GitHub |
-
----
-
-## 📂 Project Structure
