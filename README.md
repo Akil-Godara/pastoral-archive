@@ -2,7 +2,7 @@
 
 A digital archive documenting pastoral nomadic life, traditional herding practices, and indigenous knowledge systems across mountain and grassland regions.
 
-**Live Website:** [pastoral-archive.akeelgodara63.workers.dev](https://pastoral-archive.akeelgodara63.workers.dev/)
+**Live Website:** [pastoral-archive.akeelgodara63.workers.dev](https://pastoral-archive.pages.dev/)
 
 ---
 
