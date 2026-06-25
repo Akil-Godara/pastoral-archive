@@ -1,4 +1,4 @@
-cat > README.md << 'EOF'
+
 # Pastoral Archive
 
 A digital archive documenting pastoral nomadic life, traditional herding practices, and indigenous knowledge systems across mountain and grassland regions.
