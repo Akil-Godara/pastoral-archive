@@ -52,3 +52,33 @@ To create an accessible, researcher-friendly archive that:
 ---
 
 ## 📂 Project Structure
+pastoral-archive/ 
+├── public/ 
+│├── images/ 
+││├── Rabari/ 
+││├── kuchi/ 
+││└── map/ 
+│└── pdf/ 
+│├── Rabari/ 
+│└── Kuchi/ 
+├── src/ 
+│└── pages/
+│└── index.astro 
+└── package.json
+
+---
+
+📦 Deployment
+
+This project is automatically deployed to Cloudflare Pages when changes are pushed to the main branch.
+Build Settings:
+Framework preset: Astro
+Build command: npm run build
+Build output directory: dist
+
+---
+
+👨‍💻 Author
+
+Built by @Akil Godara
+
