@@ -1,3 +1,4 @@
+cat > README.md << 'EOF'
 # Pastoral Archive
 
 A digital archive documenting pastoral nomadic life, traditional herding practices, and indigenous knowledge systems across mountain and grassland regions.
@@ -47,3 +48,7 @@ To create an accessible, researcher-friendly archive that:
 | **Hosting** | [Cloudflare Pages](https://pages.cloudflare.com/) |
 | **Contact Form** | [Formspree](https://formspree.io/) |
 | **Version Control** | Git + GitHub |
+
+---
+
+## 📂 Project Structure
