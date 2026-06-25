@@ -52,7 +52,7 @@ To create an accessible, researcher-friendly archive that:
 ---
 
 ## 📂 Project Structure
-pastoral-archive/ 
+```pastoral-archive/ 
 ├── public/ 
 │├── images/ 
 ││├── Rabari/ 
@@ -64,7 +64,7 @@ pastoral-archive/
 ├── src/ 
 │└── pages/
 │└── index.astro 
-└── package.json
+└── package.json```
 
 ---
 
@@ -82,3 +82,8 @@ Build output directory: dist
 
 Built by @Akil Godara
 
+---
+📄 License
+
+This project is created for educational and research purposes.
+---
