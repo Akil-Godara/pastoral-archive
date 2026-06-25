@@ -38,19 +38,6 @@ To create an accessible, researcher-friendly archive that:
 
 ---
 
-## 🛠️ Technical Stack
-
-| Component | Technology |
-|-----------|------------|
-| **Framework** | [Astro](https://astro.build/) |
-| **Backend** | Cloudflare Workers |
-| **Styling** | Vanilla CSS |
-| **Hosting** | [Cloudflare Pages](https://pages.cloudflare.com/) |
-| **Contact Form** | [Formspree](https://formspree.io/) |
-| **Version Control** | Git + GitHub |
-
----
-
 ## 📂 Project Structure
 ```
 pastoral-archive/ 
@@ -67,16 +54,6 @@ pastoral-archive/
 │└── index.astro 
 └── package.json
 ```
-
----
-
-📦 Deployment
-
-This project is automatically deployed to Cloudflare Pages when changes are pushed to the main branch.
-Build Settings:
-Framework preset: Astro
-Build command: npm run build
-Build output directory: dist
 
 ---
 
