@@ -971,7 +971,7 @@
 
       <div class="tabs">
         <button class="tab-btn active" onclick="showTab('rabari-gallery')">Rabari</button>
-        <button class="tab-btn" onclick="showTab('kuchi-gallery')">Kuchi</button>
+        <button class="tab-btn" onclick="showTab('kuchi-gallery', this)">Kuchi</button>
       </div>
 
       <!-- RABARI GALLERY -->
@@ -1321,11 +1321,11 @@
 
       <div class="tabs">
         <button class="tab-btn active" onclick="showTab('rabari-pdfs')">Rabari</button>
-        <button class="tab-btn" onclick="showTab('kuchi-pdfs')">Kuchi</button>
+        <button class="tab-btn" onclick="showTab('kuchi-pdfs', this)">Kuchi</button>
       </div>
 
       <!-- RABARI PDFs -->
-      <div id="rabari-pdfs" class="tab-content active">
+      <div id="Rabari-pdfs" class="tab-content active">
         <div class="pdf-grid">
           <div class="pdf-card">
             <div class="pdf-icon">📄</div>
@@ -1590,7 +1590,7 @@
       </div>
 
       <!-- KUCHI PDFs -->
-      <div id="kuchi-pdfs" class="tab-content">
+      <div id="Kuchi-pdfs" class="tab-content">
         <div class="pdf-grid">
           <div class="pdf-card">
             <div class="pdf-icon">📄</div>
@@ -1834,7 +1834,7 @@
 
       <div class="tabs">
         <button class="tab-btn active" onclick="showTab('rabari-maps')">Rabari Routes</button>
-        <button class="tab-btn" onclick="showTab('kuchi-maps')">Kuchi Routes</button>
+        <button class="tab-btn" onclick="showTab('kuchi-maps', this)">Kuchi Routes</button>
       </div>
 
       <!-- RABARI MAPS -->
@@ -2017,9 +2017,9 @@
         <div class="maps-grid">
           <div class="map-card">
             <div class="map-preview">
-              <img src="images/map/kuchi-routes/afghanistan-migration-500-1.png" alt="Afghanistan migration">
+              <img src="images/map/Kuchi-routes/afghanistan-migration-500-1.png" alt="Afghanistan migration">
               <div class="map-overlay">
-                <a href="images/map/kuchi-routes/afghanistan-migration-500-1.png" target="_blank" class="map-view">View Full Map</a>
+                <a href="images/map/Kuchi-routes/afghanistan-migration-500-1.png" target="_blank" class="map-view">View Full Map</a>
               </div>
             </div>
             <div class="map-content">
@@ -2030,9 +2030,9 @@
           </div>
           <div class="map-card">
             <div class="map-preview">
-              <img src="images/map/kuchi-routes/afghanistan-pastoralists.png" alt="Afghanistan pastoralists">
+              <img src="images/map/Kuchi-routes/afghanistan-pastoralists.png" alt="Afghanistan pastoralists">
               <div class="map-overlay">
-                <a href="images/map/kuchi-routes/afghanistan-pastoralists.png" target="_blank" class="map-view">View Full Map</a>
+                <a href="images/map/Kuchi-routes/afghanistan-pastoralists.png" target="_blank" class="map-view">View Full Map</a>
               </div>
             </div>
             <div class="map-content">
@@ -2043,9 +2043,9 @@
           </div>
           <div class="map-card">
             <div class="map-preview">
-              <img src="images/map/kuchi-routes/kuchi-route.png" alt="Kuchi route">
+              <img src="images/map/Kuchi-routes/kuchi-route.png" alt="Kuchi route">
               <div class="map-overlay">
-                <a href="images/map/kuchi-routes/kuchi-route.png" target="_blank" class="map-view">View Full Map</a>
+                <a href="images/map/Kuchi-routes/kuchi-route.png" target="_blank" class="map-view">View Full Map</a>
               </div>
             </div>
             <div class="map-content">
@@ -2056,9 +2056,9 @@
           </div>
           <div class="map-card">
             <div class="map-preview">
-              <img src="images/map/kuchi-routes/kuhci-extensive-livestock-migration-routes-are-shown-in-relation-to-priority-restoration-areas.png" alt="Kuchi livestock migration">
+              <img src="images/map/Kuchi-routes/kuhci-extensive-livestock-migration-routes-are-shown-in-relation-to-priority-restoration-areas.png" alt="Kuchi livestock migration">
               <div class="map-overlay">
-                <a href="images/map/kuchi-routes/kuhci-extensive-livestock-migration-routes-are-shown-in-relation-to-priority-restoration-areas.png" target="_blank" class="map-view">View Full Map</a>
+                <a href="images/map/Kuchi-routes/kuhci-extensive-livestock-migration-routes-are-shown-in-relation-to-priority-restoration-areas.png" target="_blank" class="map-view">View Full Map</a>
               </div>
             </div>
             <div class="map-content">
@@ -2069,9 +2069,9 @@
           </div>
           <div class="map-card">
             <div class="map-preview">
-              <img src="images/map/kuchi-routes/pakistan_pastoral-systems.png" alt="Pakistan pastoral systems">
+              <img src="images/map/Kuchi-routes/pakistan_pastoral-systems.png" alt="Pakistan pastoral systems">
               <div class="map-overlay">
-                <a href="images/map/kuchi-routes/pakistan_pastoral-systems.png" target="_blank" class="map-view">View Full Map</a>
+                <a href="images/map/Kuchi-routes/pakistan_pastoral-systems.png" target="_blank" class="map-view">View Full Map</a>
               </div>
             </div>
             <div class="map-content">
@@ -2133,39 +2133,48 @@
   </footer>
 
   <script>
-    // Mobile nav toggle
-    const navToggle = document.getElementById('navToggle');
-    const mainNav = document.getElementById('mainNav');
-    navToggle.addEventListener('click', () => {
-      mainNav.classList.toggle('show');
-    });
-
-    // Close mobile menu when clicking on a link
-    mainNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mainNav.classList.remove('show');
-      });
-    });
-
-    // Tab functionality
-    function showTab(tabId) {
-      // Hide all tab contents
-      document.querySelectorAll('.tab-content').forEach(content => {
+    // Global tab function (needed for inline onclick)
+    function showTab(tabId, btn) {
+      // Find the parent section containing these tabs
+      const section = btn.closest('section') || btn.closest('.wrap');
+    
+      // Hide all tab contents in this section
+      section.querySelectorAll('.tab-content').forEach(content => {
         content.classList.remove('active');
       });
-      
-      // Remove active class from all buttons in the same section
-      event.target.parentElement.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('active');
+    
+      // Remove active class from all buttons in this tab group
+      btn.parentElement.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('active');
       });
-      
-      // Show selected tab content
+    
+      // Show the correct tab and highlight the button
       document.getElementById(tabId).classList.add('active');
-      
-      // Add active class to clicked button
-      event.target.classList.add('active');
+      btn.classList.add('active');
     }
-  </script>
+
+    // Wait for page to load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mobile nav toggle
+      const navToggle = document.getElementById('navToggle');
+      const mainNav = document.getElementById('mainNav');
+      if (navToggle && mainNav) {
+        navToggle.addEventListener('click', () => mainNav.classList.toggle('show'));
+        mainNav.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => mainNav.classList.remove('show'));
+        });
+     }
+
+      // Fix community galleries to show only 1 image
+      document.querySelectorAll('.community-gallery').forEach(gallery => {
+        const images = gallery.querySelectorAll('img');
+        images.forEach((img, i) => {
+          img.style.display = i === 0 ? 'block' : 'none';
+        });
+        gallery.style.gridTemplateColumns = '1fr';
+      });
+    });
+  </script> 
 
 </body>
 </html>
