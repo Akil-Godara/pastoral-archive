@@ -52,7 +52,8 @@ To create an accessible, researcher-friendly archive that:
 ---
 
 ## 📂 Project Structure
-```pastoral-archive/ 
+```
+pastoral-archive/ 
 ├── public/ 
 │├── images/ 
 ││├── Rabari/ 
@@ -64,7 +65,8 @@ To create an accessible, researcher-friendly archive that:
 ├── src/ 
 │└── pages/
 │└── index.astro 
-└── package.json```
+└── package.json
+```
 
 ---
 
