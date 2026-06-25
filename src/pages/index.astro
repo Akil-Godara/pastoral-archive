@@ -1,0 +1,2171 @@
+---
+// Astro frontmatter (optional - you can leave this empty)
+---
+<!--Force Rebuild for Kuchi Images -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nomadic Pastoralism Archive</title>
+<style>
+
+  /* ============ TOKENS ============ */
+  :root{
+    --sand: #e4d3b3;
+    --sand-pale: #f3ead7;
+    --terracotta: #b1532e;
+    --terracotta-deep: #8a3d22;
+    --rust: #c4622f;
+    --charcoal: #221c17;
+    --charcoal-soft: #3a322a;
+    --ink: #2a221b;
+    --thread: #9c7b4f;
+    --line: rgba(34,28,23,0.14);
+    --cream-line: rgba(243,234,215,0.18);
+
+    --font-display: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+    --font-body: Georgia, 'Iowan Old Style', serif;
+    --font-mono: 'Courier New', Courier, monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--sand-pale);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  h1,h2,h3,h4{ font-family:var(--font-display); margin:0; font-weight:700; }
+  ::selection{ background:var(--terracotta); color:var(--sand-pale); }
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    font-size:0.72rem;
+    color:var(--terracotta-deep);
+    display:flex;
+    align-items:center;
+    gap:0.6em;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;
+    height:1px;
+    background:var(--terracotta-deep);
+    display:inline-block;
+  }
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ============ HEADER ============ */
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(36,29,23,0.96);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--cream-line);
+  }
+  .nav-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 28px;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .brand-mark{
+    width:38px; height:38px;
+    border:1.5px solid var(--rust);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--rust);
+    font-family:var(--font-mono);
+    font-size:0.85rem;
+    flex-shrink:0;
+  }
+  .brand-text h1{
+    color:var(--sand-pale);
+    font-size:1.18rem;
+    letter-spacing:0.01em;
+  }
+  .brand-text span{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:0.62rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--thread);
+    margin-top:2px;
+  }
+
+  nav.main-nav{
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  nav.main-nav > ul{
+    display:flex;
+    list-style:none;
+    margin:0; padding:0;
+    gap:2px;
+  }
+  nav.main-nav > ul > li{
+    position:relative;
+  }
+  nav.main-nav > ul > li > a, nav.main-nav > ul > li > button{
+    background:none;
+    border:none;
+    cursor:pointer;
+    color:var(--sand-pale);
+    font-family:var(--font-mono);
+    font-size:0.76rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:10px 14px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    border-radius:3px;
+    transition:background 0.2s ease, color 0.2s ease;
+  }
+  nav.main-nav > ul > li > a:hover,
+  nav.main-nav > ul > li > button:hover,
+  nav.main-nav > ul > li.open > button{
+    background:rgba(196,98,47,0.18);
+    color:var(--rust);
+  }
+
+  .nav-toggle{
+    display:none;
+    background:none;
+    border:1px solid var(--cream-line);
+    border-radius:4px;
+    width:42px; height:38px;
+    color:var(--sand-pale);
+    font-size:1.1rem;
+    cursor:pointer;
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(196,98,47,0.25), transparent 55%),
+      radial-gradient(ellipse at 85% 75%, rgba(177,83,46,0.22), transparent 50%),
+      linear-gradient(180deg, var(--charcoal) 0%, #2c241d 100%);
+    color:var(--sand-pale);
+    overflow:hidden;
+    padding:120px 28px 100px;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:repeating-linear-gradient(
+      0deg, rgba(243,234,215,0.025) 0px, rgba(243,234,215,0.025) 1px,
+      transparent 1px, transparent 26px
+    );
+    pointer-events:none;
+  }
+  .hero-inner{
+    max-width:1180px;
+    margin:0 auto;
+    position:relative;
+  }
+  .hero .eyebrow{ color:var(--rust); margin-bottom:26px; }
+  .hero h2{
+    font-size:clamp(2.3rem, 5.4vw, 4.1rem);
+    line-height:1.08;
+    max-width:14ch;
+    color:var(--sand-pale);
+    letter-spacing:-0.01em;
+  }
+  .hero h2 em{
+    font-style:italic;
+    color:var(--rust);
+  }
+  .hero-poem{
+    margin-top:34px;
+    max-width:560px;
+    font-size:1.08rem;
+    color:rgba(243,234,215,0.82);
+    border-left:2px solid var(--terracotta);
+    padding-left:22px;
+  }
+  .hero-poem p{ margin:0 0 14px; }
+  .hero-poem p:last-child{ margin-bottom:0; }
+  .hero-cta{
+    margin-top:42px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:14px 26px;
+    border-radius:3px;
+    border:1px solid transparent;
+    cursor:pointer;
+    display:inline-block;
+  }
+  .btn-solid{
+    background:var(--terracotta);
+    color:var(--sand-pale);
+    border-color:var(--terracotta);
+  }
+  .btn-solid:hover{ background:var(--rust); border-color:var(--rust); }
+  .btn-outline{
+    border-color:rgba(243,234,215,0.4);
+    color:var(--sand-pale);
+  }
+  .btn-outline:hover{ border-color:var(--rust); color:var(--rust); }
+
+  .hero-stats{
+    margin-top:70px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--cream-line);
+    padding-top:26px;
+    gap:20px;
+  }
+  .hero-stats div strong{
+    display:block;
+    font-family:var(--font-display);
+    font-size:1.7rem;
+    color:var(--sand-pale);
+  }
+  .hero-stats div span{
+    font-family:var(--font-mono);
+    font-size:0.66rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--thread);
+  }
+
+  /* ============ SECTION HEADERS ============ */
+  .section{
+    padding:90px 28px;
+  }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    margin-bottom:54px;
+    flex-wrap:wrap;
+    border-bottom:1px solid var(--line);
+    padding-bottom:26px;
+  }
+  .section-head h3{
+    font-size:clamp(1.7rem, 3vw, 2.5rem);
+    color:var(--charcoal);
+    margin-top:10px;
+  }
+  .section-head p{
+    max-width:380px;
+    font-size:0.95rem;
+    color:var(--charcoal-soft);
+    margin:0;
+  }
+
+  /* ============ COMMUNITIES ============ */
+  .community{
+    display:grid;
+    grid-template-columns:0.95fr 1.1fr;
+    gap:56px;
+    align-items:center;
+    margin-bottom:96px;
+  }
+  .community:last-child{ margin-bottom:0; }
+  .community:nth-child(even){
+    grid-template-columns:1.1fr 0.95fr;
+  }
+  .community:nth-child(even) .community-media{ order:2; }
+  .community:nth-child(even) .community-text{ order:1; }
+
+  .community-media{
+    position:relative;
+  }
+  .community-media img{
+    width:100%;
+    height:420px;
+    object-fit:cover;
+    border-radius:4px;
+    filter:saturate(0.92) contrast(1.02);
+  }
+  .media-tag{
+    position:absolute;
+    bottom:-1px; left:-1px;
+    background:var(--terracotta);
+    color:var(--sand-pale);
+    font-family:var(--font-mono);
+    font-size:0.66rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:9px 14px;
+    border-radius:0 4px 0 4px;
+  }
+  .community-gallery{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  .community-gallery img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    display:block;
+  }
+  
+  .community-text .eyebrow{ margin-bottom:16px; }
+  .community-text h4{
+    font-size:2rem;
+    color:var(--charcoal);
+    margin-bottom:6px;
+  }
+  .community-text .region{
+    font-family:var(--font-mono);
+    font-size:0.74rem;
+    letter-spacing:0.08em;
+    color:var(--thread);
+    text-transform:uppercase;
+    margin-bottom:22px;
+    display:block;
+  }
+  .community-text p{
+    color:var(--charcoal-soft);
+    font-size:0.99rem;
+    margin:0 0 16px;
+  }
+  .community-text p:last-of-type{ margin-bottom:24px; }
+
+  .tag-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:24px;
+  }
+  .tag-row span{
+    font-family:var(--font-mono);
+    font-size:0.68rem;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    border:1px solid var(--line);
+    color:var(--charcoal-soft);
+    padding:6px 11px;
+    border-radius:20px;
+  }
+  .read-link{
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--terracotta-deep);
+    border-bottom:1px solid var(--terracotta-deep);
+    padding-bottom:3px;
+  }
+  .read-link:hover{ color:var(--rust); border-color:var(--rust); }
+
+  /* ============ TABS ============ */
+  .tabs{
+    display:flex;
+    gap:8px;
+    margin-bottom:32px;
+    flex-wrap:wrap;
+  }
+  .tab-btn{
+    font-family:var(--font-mono);
+    font-size:0.74rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:10px 20px;
+    border:1px solid var(--line);
+    background:transparent;
+    color:var(--charcoal-soft);
+    border-radius:3px;
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .tab-btn:hover{
+    border-color:var(--terracotta);
+    color:var(--terracotta);
+  }
+  .tab-btn.active{
+    background:var(--terracotta);
+    color:var(--sand-pale);
+    border-color:var(--terracotta);
+  }
+  .tab-content{
+    display:none;
+  }
+  .tab-content.active{
+    display:block;
+  }
+
+  /* ============ IMAGE GALLERY ============ */
+  .gallery-section{
+    background:var(--sand);
+  }
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+    gap:16px;
+  }
+  .gallery-item{
+    position:relative;
+    overflow:hidden;
+    border-radius:4px;
+    aspect-ratio:4/3;
+    cursor:pointer;
+    transition:transform 0.3s ease;
+  }
+  .gallery-item:hover{
+    transform:translateY(-4px);
+  }
+  .gallery-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform 0.3s ease;
+  }
+  .gallery-item:hover img{
+    transform:scale(1.05);
+  }
+  .gallery-caption{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    background:linear-gradient(transparent, rgba(34,28,23,0.9));
+    color:var(--sand-pale);
+    padding:40px 14px 12px;
+    font-size:0.88rem;
+    opacity:0;
+    transition:opacity 0.3s ease;
+  }
+  .gallery-item:hover .gallery-caption{
+    opacity:1;
+  }
+  .gallery-category{
+    font-family:var(--font-mono);
+    font-size:0.66rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--rust);
+    margin-bottom:4px;
+  }
+
+  /* ============ PDF ARCHIVE ============ */
+  .pdf-section{
+    background:var(--sand-pale);
+  }
+  .pdf-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));
+    gap:24px;
+  }
+  .pdf-card{
+    background:var(--sand-pale);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:28px;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+    display:flex;
+    flex-direction:column;
+  }
+  .pdf-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 8px 24px rgba(34,28,23,0.12);
+  }
+  .pdf-icon{
+    width:48px;
+    height:48px;
+    background:var(--terracotta);
+    border-radius:4px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--sand-pale);
+    font-size:1.4rem;
+    margin-bottom:18px;
+  }
+  .pdf-card h4{
+    font-size:1.05rem;
+    color:var(--charcoal);
+    margin-bottom:8px;
+    line-height:1.3;
+  }
+  .pdf-meta{
+    font-family:var(--font-mono);
+    font-size:0.68rem;
+    color:var(--thread);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin-bottom:12px;
+  }
+  .pdf-card p{
+    font-size:0.88rem;
+    color:var(--charcoal-soft);
+    margin:0 0 18px;
+    flex-grow:1;
+  }
+  .pdf-download{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--font-mono);
+    font-size:0.74rem;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--terracotta-deep);
+    border:1px solid var(--terracotta-deep);
+    padding:10px 18px;
+    border-radius:3px;
+    justify-self:start;
+    transition:background 0.2s ease, color 0.2s ease;
+  }
+  .pdf-download:hover{
+    background:var(--terracotta);
+    color:var(--sand-pale);
+  }
+
+  /* ============ MAPS SECTION ============ */
+  .maps-section{
+    background:var(--charcoal);
+    color:var(--sand-pale);
+  }
+  .maps-section .section-head h3{
+    color:var(--sand-pale);
+  }
+  .maps-section .section-head p{
+    color:rgba(243,234,215,0.72);
+  }
+  .maps-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(340px, 1fr));
+    gap:28px;
+  }
+  .map-card{
+    background:var(--charcoal-soft);
+    border:1px solid var(--cream-line);
+    border-radius:6px;
+    overflow:hidden;
+    transition:transform 0.2s ease;
+  }
+  .map-card:hover{
+    transform:translateY(-4px);
+  }
+  .map-preview{
+    width:100%;
+    height:220px;
+    position:relative;
+    overflow:hidden;
+  }
+  .map-preview img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform 0.3s ease;
+  }
+  .map-card:hover .map-preview img{
+    transform:scale(1.05);
+  }
+  .map-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(34,28,23,0.5);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    transition:opacity 0.2s ease;
+  }
+  .map-card:hover .map-overlay{
+    opacity:1;
+  }
+  .map-view{
+    font-family:var(--font-mono);
+    font-size:0.74rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    background:var(--terracotta);
+    color:var(--sand-pale);
+    padding:12px 24px;
+    border-radius:3px;
+  }
+  .map-content{
+    padding:24px;
+  }
+  .map-content h4{
+    font-size:1.15rem;
+    color:var(--sand-pale);
+    margin-bottom:8px;
+  }
+  .map-content .map-type{
+    font-family:var(--font-mono);
+    font-size:0.66rem;
+    color:var(--rust);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:12px;
+    display:block;
+  }
+  .map-content p{
+    font-size:0.88rem;
+    color:rgba(243,234,215,0.72);
+    margin:0 0 16px;
+  }
+
+  /* ============ FEEDBACK ============ */
+  .feedback{
+    background:var(--charcoal);
+    color:var(--sand-pale);
+    position:relative;
+    overflow:hidden;
+  }
+  .feedback::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:repeating-linear-gradient(
+      90deg, rgba(243,234,215,0.025) 0px, rgba(243,234,215,0.025) 1px,
+      transparent 1px, transparent 26px
+    );
+    pointer-events:none;
+  }
+  .feedback-grid{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:64px;
+    position:relative;
+  }
+  .feedback-intro .eyebrow{ color:var(--rust); margin-bottom:20px; }
+  .feedback-intro h3{
+    font-size:clamp(1.7rem,3vw,2.4rem);
+    margin-bottom:18px;
+  }
+  .feedback-intro p{
+    color:rgba(243,234,215,0.72);
+    font-size:0.98rem;
+    max-width:38ch;
+  }
+
+  form.feedback-form{
+    display:grid;
+    gap:20px;
+  }
+  .form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  .field{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .field label{
+    font-family:var(--font-mono);
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--thread);
+  }
+  .field input,
+  .field textarea{
+    background:rgba(243,234,215,0.05);
+    border:1px solid var(--cream-line);
+    border-radius:3px;
+    padding:13px 14px;
+    color:var(--sand-pale);
+    font-family:var(--font-body);
+    font-size:0.96rem;
+    resize:vertical;
+  }
+  .field textarea{ min-height:130px; }
+  .field input::placeholder,
+  .field textarea::placeholder{ color:rgba(243,234,215,0.32); }
+  .field input:focus,
+  .field textarea:focus{
+    outline:none;
+    border-color:var(--terracotta);
+    background:rgba(243,234,215,0.08);
+  }
+  .feedback-form button{
+    justify-self:start;
+    margin-top:6px;
+  }
+
+  /* ============ FOOTER ============ */
+  footer{
+    background:#19140f;
+    color:var(--sand-pale);
+    padding:64px 28px 28px;
+  }
+  .footer-grid{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:48px;
+    padding-bottom:40px;
+    border-bottom:1px solid rgba(243,234,215,0.1);
+  }
+  .footer-brand h4{
+    font-size:1.2rem;
+    color:var(--sand-pale);
+    margin-bottom:10px;
+  }
+  .footer-brand p{
+    font-size:0.88rem;
+    color:rgba(243,234,215,0.5);
+    max-width:32ch;
+    margin:0;
+  }
+  .footer-social{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .footer-social span.label{
+    font-family:var(--font-mono);
+    font-size:0.66rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--thread);
+    margin-bottom:4px;
+  }
+  .social-links{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .social-links a{
+    font-family:var(--font-mono);
+    font-size:0.76rem;
+    letter-spacing:0.03em;
+    border:1px solid rgba(243,234,215,0.18);
+    padding:9px 16px;
+    border-radius:20px;
+    color:var(--sand-pale);
+    transition:border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  }
+  .social-links a:hover{
+    border-color:var(--rust);
+    color:var(--rust);
+    background:rgba(196,98,47,0.1);
+  }
+  .footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+    padding-top:26px;
+    font-family:var(--font-mono);
+    font-size:0.74rem;
+    color:rgba(243,234,215,0.45);
+  }
+  .footer-bottom .credit{ color:rgba(243,234,215,0.7); }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px){
+    .community, .community:nth-child(even){
+      grid-template-columns:1fr;
+      gap:28px;
+    }
+    .community-media, .community:nth-child(even) .community-media{ order:1; }
+    .community-text, .community:nth-child(even) .community-text{ order:2; }
+    .community-media img{ height:300px; }
+    .feedback-grid{ grid-template-columns:1fr; gap:40px; }
+    .hero-stats{ grid-template-columns:repeat(2,1fr); row-gap:30px; }
+  }
+
+  @media (max-width: 760px){
+    nav.main-nav{
+      position:absolute;
+      top:100%; left:0; right:0;
+      background:var(--charcoal-soft);
+      border-bottom:1px solid var(--cream-line);
+      flex-direction:column;
+      align-items:stretch;
+      padding:10px;
+      display:none;
+    }
+    nav.main-nav.show{ display:flex; }
+    nav.main-nav > ul{
+      flex-direction:column;
+      gap:0;
+      width:100%;
+    }
+    nav.main-nav > ul > li > a,
+    nav.main-nav > ul > li > button{
+      width:100%;
+      justify-content:space-between;
+      padding:14px 12px;
+    }
+    .nav-toggle{ display:block; }
+    .hero{ padding:90px 20px 70px; }
+    .section{ padding:64px 20px; }
+    .form-row{ grid-template-columns:1fr; }
+    .footer-grid{ flex-direction:column; gap:32px; }
+    .gallery-grid{ grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); }
+    .pdf-grid, .maps-grid{ grid-template-columns:1fr; }
+  }
+
+  @media (max-width: 480px){
+    .hero-stats{ grid-template-columns:1fr 1fr; }
+    .hero-cta{ flex-direction:column; }
+    .btn{ text-align:center; }
+    .gallery-grid{ grid-template-columns:1fr; }
+  }
+
+</style>
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header>
+    <div class="nav-row">
+      <div class="brand">
+        <div class="brand-mark">NP</div>
+        <div class="brand-text">
+          <h1>Nomadic Pastoralism Archive</h1>
+          <span>Field Records &amp; Living Memory</span>
+        </div>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
+
+      <nav class="main-nav" id="mainNav">
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#communities">Communities</a></li>
+          <li><a href="#gallery">Images</a></li>
+          <li><a href="#pdfs">PDFs</a></li>
+          <li><a href="#maps">Maps</a></li>
+          <li><a href="#feedback">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">An Open Archive</div>
+      <h2>Memory moves <em>with the herd.</em></h2>
+      <div class="hero-poem">
+        <p>Before the road was a road, it was a route &mdash; walked by hooves and feet, marked by wells and the memory of where the rain fell last. Every season folded into the next, carried in songs, in saddle-bags, in the names given to a hundred different grasses.</p>
+        <p>This archive is a resting place for that knowledge: gathered, not owned. We hold it here so the walking is not forgotten.</p>
+      </div>
+      <div class="hero-cta">
+        <a href="#communities" class="btn btn-solid">Enter the Archive</a>
+        <a href="#pdfs" class="btn btn-outline">Browse Documents</a>
+      </div>
+
+      <div class="hero-stats">
+        <div><strong>70+</strong><span>PDF Documents</span></div>
+        <div><strong>60+</strong><span>Images</span></div>
+        <div><strong>18</strong><span>Maps</span></div>
+        <div><strong>2</strong><span>Communities</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMMUNITIES ============ -->
+  <section class="section" id="communities">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Latest Field Notes</div>
+          <h3>Communities &amp; Chronicles</h3>
+        </div>
+        <p>Dispatches, histories, and ongoing research on the pastoral communities this archive follows most closely.</p>
+      </div>
+
+      <!-- RABARI -->
+      <article class="community">
+        <div class="community-media">
+          <div class="community-gallery">
+            <img src="images/Rabari/people/kutchi-rabari-group.png" alt="Kutchi Rabari group">
+            <img src="images/Rabari/people/kutchi-rabari-women.png" alt="Kutchi Rabari women">
+            <img src="images/Rabari/daily-life/rabari-man-with-camel.png" alt="Rabari with camel">
+            <img src="images/Rabari/culture/embodiery-of-kutch.png" alt="Kutch embroidery">
+          </div>
+          <span class="media-tag">Gujarat & Rajasthan, India</span>
+        </div>
+        <div class="community-text">
+          <div class="eyebrow">Community Profile</div>
+          <h4>The Rabari</h4>
+          <span class="region">Western India &middot; Camel &amp; Sheep Pastoralists</span>
+          <p>The Rabari are a pastoral community of Gujarat and Rajasthan, long associated with the breeding of camels, sheep, and goats across the arid tracts of Kachchh and the Thar's eastern edge. Oral tradition traces their migration into the region over several centuries.</p>
+          <p>Rabari migratory cycles, locally remembered through named halting grounds and well sites, have historically followed the retreat and return of monsoon grasses. Recent decades have seen these cycles disrupted by the shrinking of common grazing land.</p>
+          <div class="tag-row">
+            <span>Camel Pastoralism</span>
+            <span>Kachchh</span>
+            <span>Grazing Commons</span>
+          </div>
+          <a href="#gallery" class="read-link">View Rabari Images &rarr;</a>
+        </div>
+      </article>
+
+      <!-- KUCHI -->
+      <article class="community">
+        <div class="community-media">
+          <div class="community-gallery">
+            <img src="images/Kuchi/people/kuchi-men.jpg" alt="Kuchi men">
+            <img src="images/Kuchi/women/kuchi-woman0.jpg" alt="Kuchi woman">
+            <img src="images/Kuchi/animal/camel-with-kuchi.jpg" alt="Kuchi with camel">
+            <img src="images/Kuchi/daily-life/kuchi-ten12.jpg" alt="Kuchi tent">
+          </div>
+          <span class="media-tag">Afghanistan Highlands</span>
+        </div>
+        <div class="community-text">
+          <div class="eyebrow">Community Profile</div>
+          <h4>The Kuchi</h4>
+          <span class="region">Afghanistan &middot; Goat &amp; Sheep Pastoralists</span>
+          <p>The Kuchi are Afghanistan's largest pastoral nomadic population, historically moving between summer highland pastures and lower winter grazing grounds across a route system that predates the country's modern borders.</p>
+          <p>Decades of conflict, drought, and shifting land tenure have reshaped Kuchi migration substantially, pushing many families toward partial or full settlement near urban peripheries.</p>
+          <div class="tag-row">
+            <span>Highland Migration</span>
+            <span>Kin-Based Herding</span>
+            <span>Displacement</span>
+          </div>
+          <a href="#gallery" class="read-link">View Kuchi Images &rarr;</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ IMAGE GALLERY ============ -->
+  <section class="section gallery-section" id="gallery">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Visual Archive</div>
+          <h3>Image Collection</h3>
+        </div>
+        <p>Photographs documenting pastoral life, cultural practices, and daily routines across communities.</p>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('rabari-gallery')">Rabari</button>
+        <button class="tab-btn" onclick="showTab('kuchi-gallery')">Kuchi</button>
+      </div>
+
+      <!-- RABARI GALLERY -->
+      <div id="rabari-gallery" class="tab-content active">
+        <div class="gallery-grid">
+          <!-- People -->
+          <div class="gallery-item">
+            <img src="images/Rabari/people/rabari-eleder.png" alt="Rabari elder">
+            <div class="gallery-caption">
+              <div class="gallery-category">People</div>
+              Rabari Elder
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Rabari/people/rabari-eleder-with-long-beard.png" alt="Rabari elder with long beard">
+            <div class="gallery-caption">
+              <div class="gallery-category">People</div>
+              Rabari Elder with Long Beard
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Rabari/people/kutchi-rabari-group .png" alt="Kutchi Rabari group">
+            <div class="gallery-caption">
+              <div class="gallery-category">People</div>
+              Kutchi Rabari Group
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Rabari/people/kutchi-rabari-women.png" alt="Kutchi Rabari women">
+            <div class="gallery-caption">
+              <div class="gallery-category">People</div>
+              Kutchi Rabari Women
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Rabari/people/kutchi-woman1.png" alt="Kutchi woman">
+            <div class="gallery-caption">
+              <div class="gallery-category">People</div>
+              Kutchi Woman
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Rabari/people/black-atterr-of-kutchi-rabari.png" alt="Black attire">
+            <div class="gallery-caption">
+              <div class="gallery-category">Culture</div>
+              Black Attire of Kutchi Rabari
+            </div>
+          </div>
+
+          <!-- Animals & Daily Life -->
+          <div class="gallery-item">
+            <img src="images/Rabari/animals/rabari-cow.png" alt="Rabari with cow">
+            <div class="gallery-caption">
+              <div class="gallery-category">Animals</div>
+              Rabari with Cow
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Rabari/animals/rabari-woman-with-camel.jpg" alt="Rabari woman with camel">
+            <div class="gallery-caption">
+              <div class="gallery-category">Animals</div>
+              Rabari Woman with Camel
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Rabari/animals/rabari-with-dang1.jpg" alt="Rabari with dang">
+            <div class="gallery-caption">
+              <div class="gallery-category">Animals</div>
+              Rabari with Dang
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Rabari/daily-life/rabari-camel.png" alt="Rabari camel">
+            <div class="gallery-caption">
+              <div class="gallery-category">Daily Life</div>
+              Rabari with Camel
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Rabari/daily-life/rabari-man-with-camel.png" alt="Rabari man with camel">
+            <div class="gallery-caption">
+              <div class="gallery-category">Daily Life</div>
+              Rabari Man with Camel
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Rabari/daily-life/rabari-woman-with-dang.png" alt="Rabari woman with dang">
+            <div class="gallery-caption">
+              <div class="gallery-category">Daily Life</div>
+              Rabari Woman with Dang
+            </div>
+          </div>
+
+          <!-- Ceremony & Culture -->
+          <div class="gallery-item">
+            <img src="images/Rabari/ceremony/goldern-dev.png" alt="Golden devotion">
+            <div class="gallery-caption">
+              <div class="gallery-category">Ceremony</div>
+              Golden Devotion Item
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Rabari/ceremony/rabari-man-with-goldern-devotee.png" alt="Rabari man with golden devotee">
+            <div class="gallery-caption">
+              <div class="gallery-category">Ceremony</div>
+              Rabari Man with Golden Devotee
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Rabari/culture/bridegroom-at-marriage-hall.png" alt="Bridegroom at marriage hall">
+            <div class="gallery-caption">
+              <div class="gallery-category">Culture</div>
+              Bridegroom at Marriage Hall
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Rabari/culture/embodiery-of-kutch.png" alt="Embroidery of Kutch">
+            <div class="gallery-caption">
+              <div class="gallery-category">Culture</div>
+              Embroidery of Kutch
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Rabari/culture/light-of-bridegroom.png" alt="Light of bridegroom">
+            <div class="gallery-caption">
+              <div class="gallery-category">Culture</div>
+              Light of Bridegroom
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KUCHI GALLERY -->
+      <div id="kuchi-gallery" class="tab-content">
+        <div class="gallery-grid">
+          <!-- People -->
+          <div class="gallery-item">
+            <img src="images/Kuchi/people/kuchi-men.jpg" alt="Kuchi men">
+            <div class="gallery-caption">
+              <div class="gallery-category">People</div>
+              Kuchi Men
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/people/kuchi-men5.jpg" alt="Kuchi men">
+            <div class="gallery-caption">
+              <div class="gallery-category">People</div>
+              Kuchi Men
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/people/kuchi-beard-men.jpg" alt="Kuchi bearded men">
+            <div class="gallery-caption">
+              <div class="gallery-category">People</div>
+              Kuchi Bearded Men
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/people/kuchi-beard-manf.jpg" alt="Kuchi bearded man">
+            <div class="gallery-caption">
+              <div class="gallery-category">People</div>
+              Kuchi Bearded Man
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/people/kuchi-in-refugee-camp.jpg" alt="Kuchi in refugee camp">
+            <div class="gallery-caption">
+              <div class="gallery-category">People</div>
+              Kuchi in Refugee Camp
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/people/kuchi-man-with-tes.jpg" alt="Kuchi man with tent">
+            <div class="gallery-caption">
+              <div class="gallery-category">People</div>
+              Kuchi Man with Tent
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/people/kuchi-tent-with-child.jpg" alt="Kuchi tent with child">
+            <div class="gallery-caption">
+              <div class="gallery-category">People</div>
+              Kuchi Tent with Child
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/people/kuchi-tente.jpg" alt="Kuchi tent">
+            <div class="gallery-caption">
+              <div class="gallery-category">People</div>
+              Kuchi Tent
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/people/kuchies-on-tractor.jpg" alt="Kuchies on tractor">
+            <div class="gallery-caption">
+              <div class="gallery-category">People</div>
+              Kuchies on Tractor
+            </div>
+          </div>
+
+          <!-- Women -->
+          <div class="gallery-item">
+            <img src="images/Kuchi/women/kuchi-woman0.jpg" alt="Kuchi woman">
+            <div class="gallery-caption">
+              <div class="gallery-category">Women</div>
+              Kuchi Woman
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/women/kuchi-womanr.jpg" alt="Kuchi woman">
+            <div class="gallery-caption">
+              <div class="gallery-category">Women</div>
+              Kuchi Woman
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/women/kuchi-womans.jpg" alt="Kuchi women">
+            <div class="gallery-caption">
+              <div class="gallery-category">Women</div>
+              Kuchi Women
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/women/kuchi-women-oranaments.jpg" alt="Kuchi women ornaments">
+            <div class="gallery-caption">
+              <div class="gallery-category">Women</div>
+              Kuchi Women with Ornaments
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/women/kuchi-woman-at-their-tent.jpg" alt="Kuchi woman at tent">
+            <div class="gallery-caption">
+              <div class="gallery-category">Women</div>
+              Kuchi Woman at Tent
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/women/kuchi-mother-with-child.jpg" alt="Kuchi mother with child">
+            <div class="gallery-caption">
+              <div class="gallery-category">Women</div>
+              Kuchi Mother with Child
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/women/kuchi-man-with-women.jpg" alt="Kuchi man with women">
+            <div class="gallery-caption">
+              <div class="gallery-category">Women</div>
+              Kuchi Man with Women
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/women/kuchi-marriage-function.jpg" alt="Kuchi marriage function">
+            <div class="gallery-caption">
+              <div class="gallery-category">Women</div>
+              Kuchi Marriage Function
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/women/childern-in-unicef-centre.jpg" alt="Children in UNICEF centre">
+            <div class="gallery-caption">
+              <div class="gallery-category">Women</div>
+              Children in UNICEF Centre
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/women/kuchi-cihildern-in-school.jpg" alt="Kuchi children in school">
+            <div class="gallery-caption">
+              <div class="gallery-category">Women</div>
+              Kuchi Children in School
+            </div>
+          </div>
+
+          <!-- Animals -->
+          <div class="gallery-item">
+            <img src="images/Kuchi/animal/camel-with-kuchi.jpg" alt="Camel with Kuchi">
+            <div class="gallery-caption">
+              <div class="gallery-category">Animals</div>
+              Camel with Kuchi
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/animal/camel-at-kuchi-tent.jpg" alt="Camel at Kuchi tent">
+            <div class="gallery-caption">
+              <div class="gallery-category">Animals</div>
+              Camel at Kuchi Tent
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/animal/kuchi-domedary.jpg" alt="Kuchi dromedary">
+            <div class="gallery-caption">
+              <div class="gallery-category">Animals</div>
+              Kuchi Dromedary
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/animal/kuchi-man-with-sheep.jpg" alt="Kuchi man with sheep">
+            <div class="gallery-caption">
+              <div class="gallery-category">Animals</div>
+              Kuchi Man with Sheep
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/animal/sheep-with-women.jpg" alt="Sheep with women">
+            <div class="gallery-caption">
+              <div class="gallery-category">Animals</div>
+              Sheep with Women
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/animal/donkey-with-kuchi3.jpg" alt="Donkey with Kuchi">
+            <div class="gallery-caption">
+              <div class="gallery-category">Animals</div>
+              Donkey with Kuchi
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/Kuchi/animal/kuchi-woman-with-camel.jpg" alt="Kuchi woman with camel">
+            <div class="gallery-caption">
+              <div class="gallery-category">Animals</div>
+              Kuchi Woman with Camel
+            </div>
+          </div>
+
+          <!-- Daily Life -->
+          <div class="gallery-item">
+            <img src="images/Kuchi/daily-life/kuchi-ten12.jpg" alt="Kuchi tent">
+            <div class="gallery-caption">
+              <div class="gallery-category">Daily Life</div>
+              Kuchi Tent
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PDF ARCHIVE ============ -->
+  <section class="section pdf-section" id="pdfs">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Document Repository</div>
+          <h3>PDF Archive</h3>
+        </div>
+        <p>Field reports, oral history transcripts, policy papers, and academic research on pastoral communities.</p>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('rabari-pdfs')">Rabari</button>
+        <button class="tab-btn" onclick="showTab('kuchi-pdfs')">Kuchi</button>
+      </div>
+
+      <!-- RABARI PDFs -->
+      <div id="rabari-pdfs" class="tab-content active">
+        <div class="pdf-grid">
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Adaption of Rabari</h4>
+            <div class="pdf-meta">Climate Research</div>
+            <p>Study on how Rabari pastoralists adapt to changing environmental conditions.</p>
+            <a href="pdf/Rabari/climate-r/adaption-of-rabari.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Grass is Greener: Study of Rabari</h4>
+            <div class="pdf-meta">Climate Research &middot; Arun Agrawal</div>
+            <p>Comprehensive study of Rabari pastoralism and grazing patterns by Arun Agrawal.</p>
+            <a href="pdf/Rabari/climate-r/grass-is-greener-study-of-Rabari-by-arun-agrawal.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Kumbhalgarh Wildlife Sanctuary & Camel Pastoralists</h4>
+            <div class="pdf-meta">Climate Research</div>
+            <p>Case study examining the impact of wildlife sanctuary policies on camel pastoralists.</p>
+            <a href="pdf/Rabari/climate-r/the-case-of-kumbhalgarh-wildlife-sanctuary-and-camel-pastoralist.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>A Pilgrimage of Camels</h4>
+            <div class="pdf-meta">Economy</div>
+            <p>Documentation of camel pastoralism and its economic significance.</p>
+            <a href="pdf/Rabari/economy/a-pilgrimage-of-camels.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Historical Overview of Kutch Embroideries</h4>
+            <div class="pdf-meta">Economy</div>
+            <p>Historical analysis of Kutch embroidery traditions and their economic role.</p>
+            <a href="pdf/Rabari/economy/historical-overview-of-kutch-embroideries.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Profit on the Move: Economic Collective Migration of Raika</h4>
+            <div class="pdf-meta">Economy &middot; Arun Agrawal</div>
+            <p>Study of economic aspects of collective migration among Raika pastoralists.</p>
+            <a href="pdf/Rabari/economy/profit-on-the-move-economic-collective-migration-of-raika-arun-agrawal.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Local Dominance: Rabaris of Gujarat</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Study of local dominance patterns among Rabari communities in Gujarat.</p>
+            <a href="pdf/Rabari/historical-docs/local-dominance-a-study-in-the-context-of-rabaris-of-gujarat.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Adoption of Improved Camel Husbandry Practices</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Research on adoption patterns of improved camel husbandry techniques.</p>
+            <a href="pdf/Rabari/historical-docs/adoption-of-improved-camel-husbandry-practices.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Black Sheep of Rajasthan</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Study of pastoral communities in Rajasthan.</p>
+            <a href="pdf/Rabari/historical-docs/black-sheep-of-rajasthan.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Camel Rearing Practice</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Documentation of traditional camel rearing practices.</p>
+            <a href="pdf/Rabari/historical-docs/camel-rearing-practice.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Migration Pattern of Rabari in Bikaner</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Study of Rabari migration patterns in the Bikaner region.</p>
+            <a href="pdf/Rabari/historical-docs/migration-pattern-of-rabari-in-bikaner.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Mobility and Cooperation Among Rabari</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Analysis of mobility patterns and cooperative practices among Rabari.</p>
+            <a href="pdf/Rabari/historical-docs/mobility-and-cooperation-among-rabari.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Mobility and Cooperation Among Nomadic Shepherds</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Comparative study of nomadic shepherd cooperation and mobility.</p>
+            <a href="pdf/Rabari/historical-docs/mobility_and_cooperation_among_nomadic_shepherds.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>No Place Like Home: History, Political and Mobility</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Study of pastoral nomadic community in western India.</p>
+            <a href="pdf/Rabari/historical-docs/no-place-like-home-history-political-and-mobility-among-a-pastoral-nomadic-community-in-western-india-ebsco.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Nomadization in Rajasthan: Migration, Institutions and Economy</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Comprehensive study of nomadization processes in Rajasthan.</p>
+            <a href="pdf/Rabari/historical-docs/nomadization-in-rajasthan-migration-institutions-and-economy.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Pace of Mobility of Rabari</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Analysis of mobility patterns and pace among Rabari pastoralists.</p>
+            <a href="pdf/Rabari/historical-docs/pace-of-mobility-of-rabari.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Pastoralism in Changing World</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Study of pastoralism in the context of global change.</p>
+            <a href="pdf/Rabari/historical-docs/pastoralism-in-changing-world.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Pastoralism in the Arid Lands in Rajasthan</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Documentation of pastoral practices in Rajasthan's arid regions.</p>
+            <a href="pdf/Rabari/historical-docs/pastoralism-in-the-arid-lands-in-rajasthan.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Pastoralism in Western India: Comparative Perspective</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Comparative analysis of pastoralism in western India.</p>
+            <a href="pdf/Rabari/historical-docs/pastoralism-in-western-india-comparative-perspective.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Pastoralists Inside Out: Contradictory Conceptual Geography</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Study of Rajasthan Raika pastoralists' conceptual geography.</p>
+            <a href="pdf/Rabari/historical-docs/pastoralists-insideout-the-contradictory-conceptual-geography-of-rajasthan-raika.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Pastoralists Without Pasture</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Study of pastoralists facing loss of grazing lands.</p>
+            <a href="pdf/Rabari/historical-docs/pastoralists-without-pasture.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Rabari Camel Pastoralist Kinship</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Study of kinship systems among Rabari camel pastoralists.</p>
+            <a href="pdf/Rabari/historical-docs/rabari-camel-pastoralist-kinship.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Rabari by Sigrid Westphal-Hellbusch</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Classic ethnographic study of Rabari by Sigrid Westphal-Hellbusch.</p>
+            <a href="pdf/Rabari/historical-docs/rabari-sigrid-westphal-hellbusch.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Rabaris of Kutch: History Through Legends</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Historical account of Rabaris in Kutch through oral legends.</p>
+            <a href="pdf/Rabari/historical-docs/rabaris-of-kutch-history-through-legends.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Raika Dromedary Breeders (1992)</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Study of Raika dromedary breeding practices from 1992.</p>
+            <a href="pdf/Rabari/historical-docs/raika-dromedary-breeders-1992.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Raika Migration Pattern</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Documentation of Raika migration patterns.</p>
+            <a href="pdf/Rabari/historical-docs/raika-migration-pattern.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Sheep Pastoralists in Rajasthan</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Study of sheep pastoralism in Rajasthan.</p>
+            <a href="pdf/Rabari/historical-docs/sheep-pastoralist-in-rajsthan.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Shepherds and Their Leaders Among Raikas</h4>
+            <div class="pdf-meta">Historical Document &middot; Arun Agrawal</div>
+            <p>Study of leadership structures among Raika shepherds.</p>
+            <a href="pdf/Rabari/historical-docs/shepherds-and-their-leaders-among-the-raikas-of-india-arun-agrawal.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Transient Architecture of Rabari</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Study of Rabari temporary architectural structures.</p>
+            <a href="pdf/Rabari/historical-docs/transient-archietcure-of-rabari.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Literacy for Migrants</h4>
+            <div class="pdf-meta">Women's Studies</div>
+            <p>Ethnographic study of literacy programs for migrant communities.</p>
+            <a href="pdf/Rabari/women/literacy-for-migrants-an-eth.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Articulations of Raika Women Speak</h4>
+            <div class="pdf-meta">Women's Studies</div>
+            <p>Voices and perspectives of Raika women.</p>
+            <a href="pdf/Rabari/women/articulations-of-Raika-women-speak.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Local Practices of Rabari Pastoralists</h4>
+            <div class="pdf-meta">Women's Studies</div>
+            <p>Documentation of local practices among Rabari pastoralists.</p>
+            <a href="pdf/Rabari/women/local-practices-of-rabari-pastoralists.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Maternal Health Care of Rabari Women</h4>
+            <div class="pdf-meta">Women's Studies</div>
+            <p>Study of maternal healthcare practices among Rabari women.</p>
+            <a href="pdf/Rabari/women/meternal-health-care-of-rabari-women.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Purdah Among Raika Women</h4>
+            <div class="pdf-meta">Women's Studies</div>
+            <p>Study of purdah practices among Raika women.</p>
+            <a href="pdf/Rabari/women/purdha-among-raika-women.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Questions of Inequality</h4>
+            <div class="pdf-meta">Women's Studies</div>
+            <p>Analysis of inequality issues in pastoral communities.</p>
+            <a href="pdf/Rabari/women/questions-of-inequality.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Religious Practices Among Raikas</h4>
+            <div class="pdf-meta">Women's Studies</div>
+            <p>Documentation of religious practices among Raika communities.</p>
+            <a href="pdf/Rabari/women/religious-practices-among-raikas.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Women's Perceptions of Land Ownership</h4>
+            <div class="pdf-meta">Women's Studies</div>
+            <p>Study of women's perspectives on land ownership in pastoral communities.</p>
+            <a href="pdf/Rabari/women/women-perceptions-of-land-ownership.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- KUCHI PDFs -->
+      <div id="kuchi-pdfs" class="tab-content">
+        <div class="pdf-grid">
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Afghan Caravan Trade and Imperialism in India</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Study of Afghan caravan trade and its relationship with imperialism.</p>
+            <a href="pdf/Kuchi/historical-docs/afghan-carvan-trsde-and-imperalism-in-india.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Maladar Community in Afghanistan</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Study of the Maladar pastoral community in Afghanistan.</p>
+            <a href="pdf/Kuchi/historical-docs/maladar-communityy-in-afghanist.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Nomad Expansion and Commerce in Central Afghanistan (1953)</h4>
+            <div class="pdf-meta">Historical Document &middot; Klaus Ferdinand</div>
+            <p>Classic 1953 study by Klaus Ferdinand on nomadic expansion and commerce.</p>
+            <a href="pdf/Kuchi/historical-docs/nomad_expansion_and_commerce_in_central_afghanistan-klaus-ferdinand-1953.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Nomadic Alternative</h4>
+            <div class="pdf-meta">Historical Document &middot; Thomas Barfield</div>
+            <p>Thomas Barfield's study of nomadic alternatives.</p>
+            <a href="pdf/Kuchi/historical-docs/nomadic-alternative-thomas-barfield.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Nomadism and Politics</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Analysis of the relationship between nomadism and political structures.</p>
+            <a href="pdf/Kuchi/historical-docs/nomadism-and-politics.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Pastoral Mobility in Northern Afghanistan</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Study of pastoral mobility patterns in northern Afghanistan.</p>
+            <a href="pdf/Kuchi/historical-docs/pastoral-mobility-in-norther-afghanistan.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Traditionally Mobile Groups in Kabul's Camps</h4>
+            <div class="pdf-meta">Historical Document</div>
+            <p>Documentation of traditionally mobile groups in Kabul camps.</p>
+            <a href="pdf/Kuchi/historical-docs/traditionally-mobile-groups-in-kabul-s-camps.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Accounting for Pastoralists in Afghanistan</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Study of pastoralist accounting and economic systems.</p>
+            <a href="pdf/Kuchi/research-papers/accounting-for-pastoralist-in-afghanistan.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Afghanistan Kuchi Pastoralists: Change and Adaption</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Comprehensive study of change and adaptation among Kuchi pastoralists.</p>
+            <a href="pdf/Kuchi/research-papers/afghanistan-kuchi-pastorlists-change-and-adaption.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Afghanistan's Kuchi Herders: Risks and Survival Strategies</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Analysis of risks faced by Kuchi herders and their survival strategies.</p>
+            <a href="pdf/Kuchi/research-papers/afghanistan-s-kuchi-herders-risks-to-and-strategies-for-their-survival.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Change and Adaption Among Kuchi</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Study of changes and adaptations among Kuchi communities.</p>
+            <a href="pdf/Kuchi/research-papers/change-and-adaption-among-kuchi.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Communication During Drought</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Study of communication patterns during drought periods.</p>
+            <a href="pdf/Kuchi/research-papers/communication-during-drought.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Coping with Protracted Displacement</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Analysis of coping mechanisms during prolonged displacement.</p>
+            <a href="pdf/Kuchi/research-papers/coping-with-protracted-displacement.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>COVID and Kuchi</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Impact of COVID-19 on Kuchi communities.</p>
+            <a href="pdf/Kuchi/research-papers/covid-and-kuchi.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Insecurities Among Pastoralists</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Study of security challenges facing pastoral communities.</p>
+            <a href="pdf/Kuchi/research-papers/insecurites-among-pastoralists.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Kuchi of Afghani</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Comprehensive overview of Kuchi communities in Afghanistan.</p>
+            <a href="pdf/Kuchi/research-papers/kuchi-of-afghani.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Land Degradation in Afghanistan</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Study of land degradation issues in Afghanistan.</p>
+            <a href="pdf/Kuchi/research-papers/land-degradation-in-aghanistan.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Land of the Seven Scarves: Kuchi Nomads</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Documentation of Kuchi nomads in Afghanistan.</p>
+            <a href="pdf/Kuchi/research-papers/land-of-the-seven-scarves-the-kuchi-afghanistan-s-nomads-bidoun.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Looking for Peace on the Pastures</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Study of rural land relations in Afghanistan.</p>
+            <a href="pdf/Kuchi/research-papers/looking-for-peaceon-the-pastures-rural-land-relationsin-afghanistan.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>National Assessment of Kuchi</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>National-level assessment of Kuchi communities.</p>
+            <a href="pdf/Kuchi/research-papers/national-assesment-of-kuchi.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Pastoral Support System</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Study of support systems for pastoral communities.</p>
+            <a href="pdf/Kuchi/research-papers/pastoral-support-system.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Pastoralism Among Afghan Kochi Refugees</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Study of pastoralism among Afghan Kochi refugees.</p>
+            <a href="pdf/Kuchi/research-papers/pastoralism-among-afghan-kochi-refugees.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Pastoralism, Power and Politics</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Analysis of pastoralism in relation to power and politics.</p>
+            <a href="pdf/Kuchi/research-papers/pastoralism-power-and-politics.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Singing in the Wilderness: Kuchi Nomads in Modern Afghanistan</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Study of Kuchi nomads in contemporary Afghanistan.</p>
+            <a href="pdf/Kuchi/research-papers/singing-in-the-wilderness- kuchi-nomads-in-modern-afghanistan.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Singing of Kuchi</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Documentation of Kuchi oral traditions and songs.</p>
+            <a href="pdf/Kuchi/research-papers/singing-of-kuchi.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Study of Kuchi in Kabul City Area</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Urban study of Kuchi communities in Kabul.</p>
+            <a href="pdf/Kuchi/research-papers/study-of-kuchi-in-kabul-city-area.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Richard Tapper: Who Are the Kuchi?</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Richard Tapper's foundational study on Kuchi identity.</p>
+            <a href="pdf/Kuchi/research-papers/richard-tapper-who-are-the-kuchi.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>We Who Move</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Study of mobility and identity among pastoral communities.</p>
+            <a href="pdf/Kuchi/research-papers/we-who-move.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Where Do Nomads Bury Their Dead?</h4>
+            <div class="pdf-meta">Research Paper</div>
+            <p>Study of burial practices among nomadic communities.</p>
+            <a href="pdf/Kuchi/research-papers/where-do-nomads-bury-their-dead.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Afghan Registan Kuchi</h4>
+            <div class="pdf-meta">Women's Studies</div>
+            <p>Study of Kuchi communities in the Afghan desert.</p>
+            <a href="pdf/Kuchi/woman/afghan-registan-kuchi.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Women in Afghanistan</h4>
+            <div class="pdf-meta">Women's Studies &middot; Ritu Mahendru</div>
+            <p>Ritu Mahendru's study of women in Afghanistan.</p>
+            <a href="pdf/Kuchi/woman/ritu-mahendru-women-afghanistan-most.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+          <div class="pdf-card">
+            <div class="pdf-icon">📄</div>
+            <h4>Woman as Partner in Pastoralism in Afghanistan</h4>
+            <div class="pdf-meta">Women's Studies</div>
+            <p>Study of women's roles as partners in pastoral economies.</p>
+            <a href="pdf/Kuchi/woman/woman-as-partner-in-pastoralism-in-afghanistan.pdf" class="pdf-download" download>Download PDF</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MAPS SECTION ============ -->
+  <section class="section maps-section" id="maps">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Spatial Documentation</div>
+          <h3>Maps &amp; Routes</h3>
+        </div>
+        <p>Interactive and static maps showing migration routes, grazing territories, and historical changes in pastoral landscapes.</p>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('rabari-maps')">Rabari Routes</button>
+        <button class="tab-btn" onclick="showTab('kuchi-maps')">Kuchi Routes</button>
+      </div>
+
+      <!-- RABARI MAPS -->
+      <div id="rabari-maps" class="tab-content active">
+        <div class="maps-grid">
+          <div class="map-card">
+            <div class="map-preview">
+              <img src="images/map/Rabari-route/gujarat-migration3.png" alt="Gujarat migration map">
+              <div class="map-overlay">
+                <a href="images/map/Rabari-route/gujarat-migration3.png" target="_blank" class="map-view">View Full Map</a>
+              </div>
+            </div>
+            <div class="map-content">
+              <h4>Gujarat Migration Routes</h4>
+              <span class="map-type">Migration Map</span>
+              <p>Detailed mapping of Rabari migration routes in Gujarat region.</p>
+            </div>
+          </div>
+          <div class="map-card">
+            <div class="map-preview">
+              <img src="images/map/Rabari-route/gujarat-pastoralists.png" alt="Gujarat pastoralists map">
+              <div class="map-overlay">
+                <a href="images/map/Rabari-route/gujarat-pastoralists.png" target="_blank" class="map-view">View Full Map</a>
+              </div>
+            </div>
+            <div class="map-content">
+              <h4>Gujarat Pastoralists</h4>
+              <span class="map-type">Territory Map</span>
+              <p>Mapping of pastoralist territories and grazing areas in Gujarat.</p>
+            </div>
+          </div>
+          <div class="map-card">
+            <div class="map-preview">
+              <img src="images/map/Rabari-route/gujarat-rabari6.png" alt="Gujarat Rabari map">
+              <div class="map-overlay">
+                <a href="images/map/Rabari-route/gujarat-rabari6.png" target="_blank" class="map-view">View Full Map</a>
+              </div>
+            </div>
+            <div class="map-content">
+              <h4>Gujarat Rabari Territory</h4>
+              <span class="map-type">Territory Map</span>
+              <p>Rabari territorial boundaries and movement patterns in Gujarat.</p>
+            </div>
+          </div>
+          <div class="map-card">
+            <div class="map-preview">
+              <img src="images/map/Rabari-route/gujarat-to-rajasthan-migration.jpg" alt="Gujarat to Rajasthan migration">
+              <div class="map-overlay">
+                <a href="images/map/Rabari-route/gujarat-to-rajasthan-migration.jpg" target="_blank" class="map-view">View Full Map</a>
+              </div>
+            </div>
+            <div class="map-content">
+              <h4>Gujarat to Rajasthan Migration</h4>
+              <span class="map-type">Migration Route</span>
+              <p>Cross-state migration routes from Gujarat to Rajasthan.</p>
+            </div>
+          </div>
+          <div class="map-card">
+            <div class="map-preview">
+              <img src="images/map/Rabari-route/kutch-rabari-migration.png" alt="Kutch Rabari migration">
+              <div class="map-overlay">
+                <a href="images/map/Rabari-route/kutch-rabari-migration.png" target="_blank" class="map-view">View Full Map</a>
+              </div>
+            </div>
+            <div class="map-content">
+              <h4>Kutch Rabari Migration</h4>
+              <span class="map-type">Migration Route</span>
+              <p>Seasonal migration routes of Rabari in Kutch region.</p>
+            </div>
+          </div>
+          <div class="map-card">
+            <div class="map-preview">
+              <img src="images/map/Rabari-route/map-showing-the-Rabari-migration-area-in-gujarat.png" alt="Rabari migration area Gujarat">
+              <div class="map-overlay">
+                <a href="images/map/Rabari-route/map-showing-the-Rabari-migration-area-in-gujarat.png" target="_blank" class="map-view">View Full Map</a>
+              </div>
+            </div>
+            <div class="map-content">
+              <h4>Rabari Migration Area in Gujarat</h4>
+              <span class="map-type">Area Map</span>
+              <p>Comprehensive map showing Rabari migration zones in Gujarat.</p>
+            </div>
+          </div>
+          <div class="map-card">
+            <div class="map-preview">
+              <img src="images/map/Rabari-route/migration-route-of-rabari.png" alt="Migration route of Rabari">
+              <div class="map-overlay">
+                <a href="images/map/Rabari-route/migration-route-of-rabari.png" target="_blank" class="map-view">View Full Map</a>
+              </div>
+            </div>
+            <div class="map-content">
+              <h4>Migration Route of Rabari</h4>
+              <span class="map-type">Route Map</span>
+              <p>Detailed migration route mapping for Rabari pastoralists.</p>
+            </div>
+          </div>
+          <div class="map-card">
+            <div class="map-preview">
+              <img src="images/map/Rabari-route/pastoraliast-in-gujarat.png" alt="Pastoralists in Gujarat">
+              <div class="map-overlay">
+                <a href="images/map/Rabari-route/pastoraliast-in-gujarat.png" target="_blank" class="map-view">View Full Map</a>
+              </div>
+            </div>
+            <div class="map-content">
+              <h4>Pastoralists in Gujarat</h4>
+              <span class="map-type">Territory Map</span>
+              <p>Mapping of all pastoralist communities in Gujarat.</p>
+            </div>
+          </div>
+          <div class="map-card">
+            <div class="map-preview">
+              <img src="images/map/Rabari-route/pastoralist-india.png" alt="Pastoralists in India">
+              <div class="map-overlay">
+                <a href="images/map/Rabari-route/pastoralist-india.png" target="_blank" class="map-view">View Full Map</a>
+              </div>
+            </div>
+            <div class="map-content">
+              <h4>Pastoralists in India</h4>
+              <span class="map-type">National Map</span>
+              <p>National overview of pastoralist communities across India.</p>
+            </div>
+          </div>
+          <div class="map-card">
+            <div class="map-preview">
+              <img src="images/map/Rabari-route/rabari-migration-area.png" alt="Rabari migration area">
+              <div class="map-overlay">
+                <a href="images/map/Rabari-route/rabari-migration-area.png" target="_blank" class="map-view">View Full Map</a>
+              </div>
+            </div>
+            <div class="map-content">
+              <h4>Rabari Migration Area</h4>
+              <span class="map-type">Area Map</span>
+              <p>Complete mapping of Rabari migration zones.</p>
+            </div>
+          </div>
+          <div class="map-card">
+            <div class="map-preview">
+              <img src="images/map/Rabari-route/rabari-route-at-pali.png" alt="Rabari route at Pali">
+              <div class="map-overlay">
+                <a href="images/map/Rabari-route/rabari-route-at-pali.png" target="_blank" class="map-view">View Full Map</a>
+              </div>
+            </div>
+            <div class="map-content">
+              <h4>Rabari Route at Pali</h4>
+              <span class="map-type">Local Route</span>
+              <p>Detailed route mapping in the Pali region.</p>
+            </div>
+          </div>
+          <div class="map-card">
+            <div class="map-preview">
+              <img src="images/map/Rabari-route/rajasthan-migration-route.png" alt="Rajasthan migration route">
+              <div class="map-overlay">
+                <a href="images/map/Rabari-route/rajasthan-migration-route.png" target="_blank" class="map-view">View Full Map</a>
+              </div>
+            </div>
+            <div class="map-content">
+              <h4>Rajasthan Migration Route</h4>
+              <span class="map-type">Migration Route</span>
+              <p>Migration routes through Rajasthan desert regions.</p>
+            </div>
+          </div>
+          <div class="map-card">
+            <div class="map-preview">
+              <img src="images/map/Rabari-route/rajasthan-thar-desert.png" alt="Rajasthan Thar desert">
+              <div class="map-overlay">
+                <a href="images/map/Rabari-route/rajasthan-thar-desert.png" target="_blank" class="map-view">View Full Map</a>
+              </div>
+            </div>
+            <div class="map-content">
+              <h4>Rajasthan Thar Desert</h4>
+              <span class="map-type">Geographic Map</span>
+              <p>Pastoral territories in the Thar Desert of Rajasthan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KUCHI MAPS -->
+      <div id="kuchi-maps" class="tab-content">
+        <div class="maps-grid">
+          <div class="map-card">
+            <div class="map-preview">
+              <img src="images/map/kuchi-routes/afghanistan-migration-500-1.png" alt="Afghanistan migration">
+              <div class="map-overlay">
+                <a href="images/map/kuchi-routes/afghanistan-migration-500-1.png" target="_blank" class="map-view">View Full Map</a>
+              </div>
+            </div>
+            <div class="map-content">
+              <h4>Afghanistan Migration Routes</h4>
+              <span class="map-type">Migration Map</span>
+              <p>Historical migration routes of Kuchi pastoralists across Afghanistan.</p>
+            </div>
+          </div>
+          <div class="map-card">
+            <div class="map-preview">
+              <img src="images/map/kuchi-routes/afghanistan-pastoralists.png" alt="Afghanistan pastoralists">
+              <div class="map-overlay">
+                <a href="images/map/kuchi-routes/afghanistan-pastoralists.png" target="_blank" class="map-view">View Full Map</a>
+              </div>
+            </div>
+            <div class="map-content">
+              <h4>Afghanistan Pastoralists</h4>
+              <span class="map-type">Territory Map</span>
+              <p>Mapping of pastoralist territories across Afghanistan.</p>
+            </div>
+          </div>
+          <div class="map-card">
+            <div class="map-preview">
+              <img src="images/map/kuchi-routes/kuchi-route.png" alt="Kuchi route">
+              <div class="map-overlay">
+                <a href="images/map/kuchi-routes/kuchi-route.png" target="_blank" class="map-view">View Full Map</a>
+              </div>
+            </div>
+            <div class="map-content">
+              <h4>Kuchi Migration Route</h4>
+              <span class="map-type">Route Map</span>
+              <p>Detailed Kuchi seasonal migration route mapping.</p>
+            </div>
+          </div>
+          <div class="map-card">
+            <div class="map-preview">
+              <img src="images/map/kuchi-routes/kuhci-extensive-livestock-migration-routes-are-shown-in-relation-to-priority-restoration-areas.png" alt="Kuchi livestock migration">
+              <div class="map-overlay">
+                <a href="images/map/kuchi-routes/kuhci-extensive-livestock-migration-routes-are-shown-in-relation-to-priority-restoration-areas.png" target="_blank" class="map-view">View Full Map</a>
+              </div>
+            </div>
+            <div class="map-content">
+              <h4>Kuchi Livestock Migration & Restoration Areas</h4>
+              <span class="map-type">Conservation Map</span>
+              <p>Livestock migration routes shown in relation to priority restoration areas.</p>
+            </div>
+          </div>
+          <div class="map-card">
+            <div class="map-preview">
+              <img src="images/map/kuchi-routes/pakistan_pastoral-systems.png" alt="Pakistan pastoral systems">
+              <div class="map-overlay">
+                <a href="images/map/kuchi-routes/pakistan_pastoral-systems.png" target="_blank" class="map-view">View Full Map</a>
+              </div>
+            </div>
+            <div class="map-content">
+              <h4>Pakistan Pastoral Systems</h4>
+              <span class="map-type">Regional Map</span>
+              <p>Comparative mapping of pastoral systems in Pakistan region.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEEDBACK ============ -->
+  <section class="section feedback" id="feedback">
+    <div class="wrap feedback-grid">
+      <div class="feedback-intro">
+        <div class="eyebrow">Get In Touch</div>
+        <h3>Questions, corrections, &amp; contributions.</h3>
+        <p>This archive grows through correspondence with researchers, descendants, and herders themselves. If something here is incomplete, miscredited, or missing &mdash; tell us.</p>
+      </div>
+
+      <form class="feedback-form" action="https://formspree.io/f/mdararkb" method="POST">
+        <div class="form-row">
+          <div class="field">
+            <label for="fname">Name</label>
+            <input type="text" id="fname" name="name" placeholder="Your full name" required>
+          </div>
+          <div class="field">
+            <label for="femail">Email</label>
+            <input type="email" id="femail" name="email" placeholder="you@example.com" required>
+          </div>
+         </div>
+         <div class="field">
+           <label for="fmessage">Message</label>
+           <textarea id="fmessage" name="message" placeholder="Share a question, a correction, or a record you'd like to contribute..." required></textarea>
+         </div>
+         <button type="submit" class="btn btn-solid">Submit</button>
+        </form>
+      </div>
+  </section>
+ 
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <h4>Nomadic Pastoralism Archive</h4>
+        <p>An open record of pastoral communities, migration, and change across South and Central Asia.</p>
+      </div>
+      <div class="footer-social">
+        <span class="label">Follow &amp; Connect</span>
+        
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <span class="credit">Built by @Akil Godara</span>
+      <span>&copy; 2026 Nomadic Pastoralism Archive. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const mainNav = document.getElementById('mainNav');
+    navToggle.addEventListener('click', () => {
+      mainNav.classList.toggle('show');
+    });
+
+    // Close mobile menu when clicking on a link
+    mainNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mainNav.classList.remove('show');
+      });
+    });
+
+    // Tab functionality
+    function showTab(tabId) {
+      // Hide all tab contents
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      
+      // Remove active class from all buttons in the same section
+      event.target.parentElement.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      // Show selected tab content
+      document.getElementById(tabId).classList.add('active');
+      
+      // Add active class to clicked button
+      event.target.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
